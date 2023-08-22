@@ -12,24 +12,42 @@ accelerator:
       inputType: text
       label: Library Version
       description: Library Version
-      defaultValue: 1.0.0
+      defaultValue: 1.0.1
       required: true
     - name: dataVersion
       inputType: text
       label: Data Schema Version
       description: Data Schema Version
-      defaultValue: 1.0.0
+      defaultValue: 1.0.1
       required: true
   imports:
-    - name: "library-1.0.0"
-    - name: "library-1.0.1"
+    - name: "library-1-0-0"
+    - name: "library-1-0-1"
 
 engine:
-  chain:
+  merge:
     - include: [ "**" ]
       exclude: [ "library/**" ]
     - condition: "#libraryVersion == '1.0.0'"
       merge:
         - type: InvokeFragment
-          reference: "library-1.0.0"
+          reference: "library-1-0-0"
         - include: [ "**" ]
+    - condition: "#libraryVersion == '1.0.1'"
+      merge:
+        - type: InvokeFragment
+          reference: "library-1-0-1"
+        - include: [ "**" ]
+    - include: [ "webapp/pom.xml" ]
+      chain:
+        - type: ReplaceText
+          regex:
+            pattern: "<dependency>\\s+<groupId>jp.co.normalcompany</groupId>\\s+<artifactId>library</artifactId>\\s+<version>.*</version>\\s+</dependency>\\s+"
+            with: |
+              '<dependency>
+                          <groupId>jp.co.normalcompany</groupId>
+                          <artifactId>library</artifactId>
+                          <version>' + #libraryVersion + '</version>
+                      </dependency>
+              '
+

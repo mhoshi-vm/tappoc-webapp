@@ -2,7 +2,7 @@
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Fragment
 metadata:
-  name: library-1.0.0
+  name: library-1-0-0
   namespace: accelerator-system
 spec:
   git:
@@ -14,7 +14,7 @@ spec:
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Fragment
 metadata:
-  name: library-1.0.1
+  name: library-1-0-1
   namespace: accelerator-system
 spec:
   git:
@@ -26,7 +26,7 @@ spec:
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Accelerator
 metadata:
-  name: webapp-1.0.0
+  name: webapp-1-0-0
   namespace: accelerator-system
 spec:
   git:
