@@ -1,0 +1,34 @@
+accelerator:
+  displayName: App/Data schema change
+  description: App/Data schema change poc
+  tags:
+    - java
+    - spring
+    - cloud
+    - poc
+  # options for the UI
+  options:
+    - name: libraryVersion
+      inputType: text
+      label: Library Version
+      description: Library Version
+      defaultValue: 1.0.0
+      required: true
+    - name: dataVersion
+      inputType: text
+      label: Data Schema Version
+      description: Data Schema Version
+      defaultValue: 1.0.0
+      required: true
+  imports:
+    - library-1.0.0
+    - library-1.0.1
+
+engine:
+  merge:
+    - include: [ "**" ]
+      exclude: [ "library/**" ]
+    - condition: "#libraryVersion == '1.0.0'"
+      merge:
+      - type: InvokeFragment
+        reference: library-1.0.0

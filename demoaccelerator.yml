@@ -1,0 +1,32 @@
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: library-1.0.0
+spec:
+  git:
+    ref:
+      branch: main
+      tag: 1.0.0
+    url: https://github.com/mhoshi-vm/tappoc-library
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: library-1.0.1
+spec:
+  git:
+    ref:
+      branch: main
+      tag: 1.0.1
+    url: https://github.com/mhoshi-vm/tappoc-library
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: webapp-1.0.0
+spec:
+  git:
+    ref:
+      branch: main
+    url: https://github.com/mhoshi-vm/tappoc-webapp
