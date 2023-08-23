@@ -9,16 +9,26 @@ accelerator:
   # options for the UI
   options:
     - name: libraryVersion
-      inputType: text
+      inputType: select
       label: Library Version
       description: Library Version
       defaultValue: 1.0.1
+      choices:
+        - text: 1.0.0
+          value: 1.0.0
+        - text: 1.0.1
+          value: 1.0.1
       required: true
     - name: dbVersion
-      inputType: text
+      inputType: select
       label: Data Schema Version
       description: Data Schema Version
       defaultValue: 1.0.1
+      choices:
+        - text: 1.0.0
+          value: 1.0.0
+        - text: 1.0.1
+          value: 1.0.1
       required: true
   imports:
     - name: "library-1-0-0"
