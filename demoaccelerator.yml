@@ -24,6 +24,17 @@ spec:
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Fragment
 metadata:
+  name: library-2-0-0
+  namespace: accelerator-system
+spec:
+  git:
+    ref:
+      branch: 2.0.0
+    url: https://github.com/mhoshi-vm/tappoc-library
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
   name: db-1-0-0
   namespace: accelerator-system
 spec:
@@ -41,6 +52,17 @@ spec:
   git:
     ref:
       branch: 1.0.1
+    url: https://github.com/mhoshi-vm/tappoc-dbschema
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: db-2-0-0
+  namespace: accelerator-system
+spec:
+  git:
+    ref:
+      branch: 2.0.0
     url: https://github.com/mhoshi-vm/tappoc-dbschema
 ---
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1

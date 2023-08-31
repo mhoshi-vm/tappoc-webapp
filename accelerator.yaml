@@ -12,29 +12,35 @@ accelerator:
       inputType: select
       label: Library Version
       description: Library Version
-      defaultValue: 1.0.1
+      defaultValue: 2.0.0
       choices:
         - text: 1.0.0
           value: 1.0.0
         - text: 1.0.1
           value: 1.0.1
+        - text: 2.0.0
+          value: 2.0.0
       required: true
     - name: dbVersion
       inputType: select
       label: Data Schema Version
       description: Data Schema Version
-      defaultValue: 1.0.1
+      defaultValue: 2.0.0
       choices:
         - text: 1.0.0
           value: 1.0.0
         - text: 1.0.1
           value: 1.0.1
+        - text: 2.0.0
+          value: 2.0.0
       required: true
   imports:
     - name: "library-1-0-0"
     - name: "library-1-0-1"
+    - name: "library-2-0-0"
     - name: "db-1-0-0"
     - name: "db-1-0-1"
+    - name: "db-2-0-0"
 engine:
   merge:
     - include: [ "**" ]
@@ -49,6 +55,11 @@ engine:
         - type: InvokeFragment
           reference: "library-1-0-1"
         - include: [ "**" ]
+    - condition: "#libraryVersion == '2.0.0'"
+      merge:
+        - type: InvokeFragment
+          reference: "library-2-0-0"
+        - include: [ "**" ]
     - condition: "#dbVersion == '1.0.0'"
       merge:
         - type: InvokeFragment
@@ -58,6 +69,11 @@ engine:
       merge:
         - type: InvokeFragment
           reference: "db-1-0-1"
+        - include: [ "**" ]
+    - condition: "#dbVersion == '2.0.0'"
+      merge:
+        - type: InvokeFragment
+          reference: "db-2-0-0"
         - include: [ "**" ]
     - include: [ "webapp/pom.xml" ]
       chain:
