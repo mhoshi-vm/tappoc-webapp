@@ -100,7 +100,7 @@ engine:
               with: "#appName"
         - type: ReplaceText
           substitutions:
-            - text: db.instance
+            - text: tdata
               with: "#databaseTarget"
     - include: [ "workload.yaml" ]
       chain:
