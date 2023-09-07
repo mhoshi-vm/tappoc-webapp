@@ -8,6 +8,23 @@ accelerator:
     - poc
   # options for the UI
   options:
+    - name: appName
+      inputType: text
+      label: app name of app
+      description: app name
+      defaultValue: webapp
+      required: true
+    - name: databaseTarget
+      inputType: text
+      label: target database
+      description: target database
+      defaultValue: staging
+      required: true
+      choices:
+        - text: Production
+          value: production
+        - text: Staging
+          value: staging
     - name: libraryVersion
       inputType: select
       label: Library Version
@@ -44,7 +61,7 @@ accelerator:
 engine:
   merge:
     - include: [ "**" ]
-      exclude: [ "library/**" ]
+      exclude: [ "webapp/src/main/resources/application.properties", "library/**" ]
     - condition: "#libraryVersion == '1.0.0'"
       merge:
         - type: InvokeFragment
@@ -75,6 +92,24 @@ engine:
         - type: InvokeFragment
           reference: "db-2-0-0"
         - include: [ "**" ]
+    - include: [ "webapp/src/main/resources/application.properties" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: test
+              with: "#appName"
+        - type: ReplaceText
+          substitutions:
+            - text: db.instance
+              with: "#databaseTarget"
+    - include: [ "workload.yaml" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: tappoc
+              with: "#appName"
+            - text: bs-test
+              with: "#databaseTarget"
     - include: [ "webapp/pom.xml" ]
       chain:
         - type: ReplaceText

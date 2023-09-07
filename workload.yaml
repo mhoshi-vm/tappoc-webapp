@@ -19,3 +19,14 @@ spec:
       value:
         - kind: Secret
           name: bucketrepo-settings-xml
+  serviceClaims:
+    - name: wavefront
+      ref:
+        apiVersion: v1
+        kind: Secret
+        name: wavefront-secret
+    - name: postgres
+      ref:
+        apiVersion: sql.tanzu.vmware.com/v1
+        kind: Postgres
+        name: postgres-bs-test
