@@ -4,6 +4,7 @@ metadata:
   labels:
     app.kubernetes.io/part-of: tappoc
     apps.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/has-tests: "true"
   name: tappoc
 spec:
   build:
@@ -13,7 +14,7 @@ spec:
       - name: BP_MAVEN_BUILT_MODULE
         value: webapp
       - name: BP_MAVEN_BUILD_ARGUMENTS
-        value: "-pl webapp -am package"
+        value: "-pl webapp -am package -DskipTests"
   params:
     - name: buildServiceBindings
       value:
