@@ -106,6 +106,10 @@ engine:
       chain:
         - type: ReplaceText
           substitutions:
+            - text: "name: tappoc"
+              with: "'name' + #appName"
+        - type: ReplaceText
+          substitutions:
             - text: bs-test
               with: "#databaseTarget"
     - include: [ "webapp/pom.xml" ]

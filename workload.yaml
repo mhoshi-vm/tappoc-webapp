@@ -2,6 +2,7 @@ apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
   labels:
+    apis.apps.tanzu.vmware.com/register-api: "true"
     app.kubernetes.io/part-of: tappoc
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: "true"
@@ -15,17 +16,28 @@ spec:
         value: webapp
       - name: BP_MAVEN_BUILD_ARGUMENTS
         value: "-pl webapp -am package -DskipTests"
+  env:
+    - name: JAVA_TOOL_OPTIONS
+      value: -Dmanagement.health.probes.enabled='false'
   params:
     - name: buildServiceBindings
       value:
         - kind: Secret
           name: bucketrepo-settings-xml
+    - name: api_descriptor
+      value:
+        description: DemoApp
+        location:
+          path: /v3/api-docs
+        owner: demo
+        system: dev
+        type: openapi
   serviceClaims:
     - name: wavefront
       ref:
         apiVersion: v1
         kind: Secret
-        name: wavefront-secret
+        name: production-wavefront
     - name: postgres
       ref:
         apiVersion: sql.tanzu.vmware.com/v1
