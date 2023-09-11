@@ -116,7 +116,7 @@ engine:
       chain:
         - type: ReplaceText
           substitutions:
-            - text: "webapp"
+            - text: "tappoc"
               with: "#appName"
     - include: [ "webapp/pom.xml" ]
       chain:
