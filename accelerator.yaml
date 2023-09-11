@@ -107,7 +107,7 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: "name: tappoc"
-              with: "'name' + #appName"
+              with: "'name: ' + #appName"
         - type: ReplaceText
           substitutions:
             - text: bs-test

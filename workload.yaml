@@ -42,4 +42,4 @@ spec:
       ref:
         apiVersion: sql.tanzu.vmware.com/v1
         kind: Postgres
-        name: postgres-bs-test
+        name: postgres-production
