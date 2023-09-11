@@ -5,7 +5,7 @@ k8s_custom_deploy(
     apply_cmd="tanzu apps workload apply -f workload.yaml --live-update" +
                                                         " --local-path . " +
                                                         " --yes >/dev/null" +
-                                                        " && kubectl get workload tappoc -o yaml",
+                                                        " && kubectl get workload webapp -o yaml",
                                              delete_cmd="tanzu apps workload delete -f workload.yaml --yes",
                                              container_selector='workload',
     deps=['pom.xml', './target/classes'],

@@ -61,7 +61,7 @@ accelerator:
 engine:
   merge:
     - include: [ "**" ]
-      exclude: [ "webapp/src/main/resources/application.properties", "library/**" ]
+      exclude: [ "webapp/src/main/resources/application.properties", "library/**", "Tiltfile" ]
     - condition: "#libraryVersion == '1.0.0'"
       merge:
         - type: InvokeFragment
@@ -112,6 +112,12 @@ engine:
           substitutions:
             - text: bs-test
               with: "#databaseTarget"
+    - include: [ "Tiltfile" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "webapp"
+              with: "#appName"
     - include: [ "webapp/pom.xml" ]
       chain:
         - type: ReplaceText
